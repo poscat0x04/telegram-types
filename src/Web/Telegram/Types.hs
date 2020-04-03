@@ -1,0 +1,113 @@
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DeriveGeneric #-}
+
+module Web.Telegram.Types
+  ( -- ** User
+    User (..),
+
+    -- ** Message
+    Message (..),
+    MessageMetadata (..),
+    MessageContent (..),
+
+    -- ** Chat
+    ChatId (..),
+    Chat (..),
+    ChatPermissions (..),
+    ChatPhoto (..),
+    ChatMember (..),
+
+    -- ** Media Types
+
+    -- *** Image
+    PhotoSize (..),
+
+    -- *** Audio
+    Audio (..),
+
+    -- *** Animation
+    Animation (..),
+
+    -- *** Document
+    Document (..),
+
+    -- *** Video
+    Video (..),
+
+    -- *** Voice
+    Voice (..),
+
+    -- *** VideoNote
+    VideoNote (..),
+
+    -- *** Contact
+    Contact (..),
+
+    -- *** Location
+    Location (..),
+
+    -- *** Venue
+    Venue (..),
+
+    -- *** PollOption
+    PollOption (..),
+
+    -- *** Poll
+    Poll (..),
+    PollType (..),
+
+    -- *** PollAnswer
+    PollAnswer (..),
+
+    -- *** Avatar
+    UserProfilePhotos (..),
+
+    -- *** File
+    File (..),
+
+    -- ** Stickers
+    Sticker (..),
+    StickerSet (..),
+    MaskPosition (..),
+
+    -- ** Response
+    ResponseParameters (..),
+    ReqResult (..),
+    ReqEither (..),
+    BotCommand (..),
+
+    -- *** Utilities
+    coe,
+    liftUnion,
+    QueryR,
+  )
+where
+
+import Data.Aeson
+import Data.Aeson.Text
+import Data.Coerce
+import Data.OpenUnion
+import Data.Text (Text)
+import Data.Text.Lazy (toStrict)
+import GHC.Generics
+import Servant.API
+import Web.Telegram.Types.Internal.Common
+import Web.Telegram.Types.Internal.Media
+import Web.Telegram.Types.Internal.Sticker
+import Web.Telegram.Types.Internal.User
+
+data ChatId
+  = ChatId Integer
+  | ChanId Text
+  deriving (Show, Eq, Generic)
+
+instance ToHttpApiData ChatId where
+  toQueryParam (ChatId i) = toQueryParam i
+  toQueryParam (ChanId t) = t
+
+-- | Alias to coerce
+coe :: Coercible a b => a -> b
+coe = coerce
+
+-- | Alias to required param
+type QueryR = QueryParam' '[Required, Strict]
