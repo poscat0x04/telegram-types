@@ -24,11 +24,9 @@ dependencies:
 - bytestring
 - filepath
 - aeson
-- unordered-containers
 - deriving-aeson
-- generic-lens
+- unordered-containers
 - open-union
-- row-types
 - servant
 - servant-multipart
 - mime-types
@@ -46,4 +44,3 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - telegram-types
-    - bytestring
