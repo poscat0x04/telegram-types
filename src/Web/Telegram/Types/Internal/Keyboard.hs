@@ -8,7 +8,6 @@ module Web.Telegram.Types.Internal.Keyboard where
 
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
 import Servant.API
 import Web.Telegram.Types.Internal.Media
 import Web.Telegram.Types.Internal.Utils

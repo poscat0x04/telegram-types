@@ -8,12 +8,9 @@
 module Web.Telegram.Types.Internal.Update where
 
 import Data.Aeson
-import Data.Aeson.Types
 import Data.Monoid
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
-import Servant.API
 import qualified Web.Telegram.Types.Internal.Common as C
 import qualified Web.Telegram.Types.Internal.InlineQuery as IQ
 import qualified Web.Telegram.Types.Internal.Media as M

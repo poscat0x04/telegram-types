@@ -4,25 +4,15 @@
 {-# LANGUAGE DerivingVia #-}
 {-# LANGUAGE PolyKinds #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications #-}
 
 module Web.Telegram.Types.Internal.User
   ( User (..),
   )
 where
 
-import Control.Monad
 import Data.Aeson
-import Data.Char (isLower)
-import Data.List (stripPrefix)
-import Data.Maybe
-  ( fromMaybe,
-    listToMaybe,
-  )
-import Data.Proxy
 import Data.Text (Text)
 import Deriving.Aeson
-import GHC.TypeLits
 import Servant.API
 import Web.Telegram.Types.Internal.Utils
 
@@ -51,16 +41,5 @@ data User
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via CustomJSON '[FieldLabelModifier (StrictStrip "user", CamelToSnake)] User
+    via PrefixedSnake' "user" User
   deriving (ToHttpApiData) via Serialize User
-
-data StrictStrip t
-
-strictStrip :: String -> String -> Maybe String
-strictStrip pre s = do
-  t <- stripPrefix pre s
-  guard $ maybe False (not . isLower) $ listToMaybe t
-  return t
-
-instance KnownSymbol k => StringModifier (StrictStrip k) where
-  getStringModifier = fromMaybe <*> strictStrip (symbolVal (Proxy @k))

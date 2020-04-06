@@ -15,15 +15,13 @@ module Web.Telegram.Types.Interaction
     InlineKeyboardMarkup (..),
     ForceReply (..),
     LoginUrl (..),
-    ReplyMarkup (..),
+    ReplyMarkup,
   )
 where
 
 import Data.Aeson
 import Data.OpenUnion
 import Deriving.Aeson
-import Deriving.Aeson.Stock
-import GHC.Generics
 import Servant.API
 import Web.Telegram.Types.Internal.Keyboard
 import Web.Telegram.Types.Internal.Utils

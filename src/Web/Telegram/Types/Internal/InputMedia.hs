@@ -14,10 +14,10 @@
 module Web.Telegram.Types.Internal.InputMedia where
 
 import Data.Aeson
+import Data.Maybe (catMaybes)
 import Data.OpenUnion
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
 import Servant.API
 import Servant.Multipart
 import Web.Telegram.Types.Internal.InputFile
@@ -30,7 +30,7 @@ data ParseMode
   deriving (Show, Eq, Ord, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via Vanilla ParseMode
+    via OmitNothing ParseMode
   deriving (ToHttpApiData) via Serialize ParseMode
 
 type VideoOrPhoto = Union '[InputMediaPhoto, InputMediaVideo]
@@ -91,21 +91,26 @@ data InputMediaAnimation
   deriving (Show, Eq, Generic, Default)
   deriving (ToHttpApiData) via Serialize InputMediaAnimation
 
+(.=?) :: ToJSON v => Text -> Maybe v -> Maybe (Text, Value)
+k .=? v = (k .=) <$> v
+
 instance ToJSON InputMediaAnimation where
   toJSON InputMediaAnimation {..} =
     let m = case media of
           Left t -> t
-          Right (Media m) -> "attach://" <> fileName m
-     in object
+          Right (Media m') -> "attach://" <> fileName m'
+     in object $
           [ "type" .= ("animation" :: Text),
-            "media" .= m,
-            "thumb" .= thumb,
-            "caption" .= caption,
-            "parse_mode" .= parseMode,
-            "width" .= width,
-            "height" .= height,
-            "duration" .= duration
+            "media" .= m
           ]
+            <> catMaybes
+              [ "thumb" .=? thumb,
+                "caption" .=? caption,
+                "parse_mode" .=? parseMode,
+                "width" .=? width,
+                "height" .=? height,
+                "duration" .=? duration
+              ]
 
 instance ToMultipart Mem InputMediaAnimation where
   toMultipart InputMediaAnimation {..} =
@@ -130,17 +135,19 @@ instance ToJSON InputMediaAudio where
   toJSON InputMediaAudio {..} =
     let m = case media of
           Left t -> t
-          Right (Media m) -> "attach://" <> fileName m
-     in object
+          Right (Media m') -> "attach://" <> fileName m'
+     in object $
           [ "type" .= ("audio" :: Text),
-            "media" .= m,
-            "thumb" .= thumb,
-            "caption" .= caption,
-            "parse_mode" .= parseMode,
-            "duration" .= duration,
-            "performer" .= performer,
-            "title" .= title
+            "media" .= m
           ]
+            <> catMaybes
+              [ "thumb" .=? thumb,
+                "caption" .=? caption,
+                "parse_mode" .=? parseMode,
+                "duration" .=? duration,
+                "performer" .=? performer,
+                "title" .=? title
+              ]
 
 instance ToMultipart Mem InputMediaAudio where
   toMultipart InputMediaAudio {..} =
@@ -162,14 +169,16 @@ instance ToJSON InputMediaDocument where
   toJSON InputMediaDocument {..} =
     let m = case media of
           Left t -> t
-          Right (Media m) -> "attach://" <> fileName m
-     in object
+          Right (Media m') -> "attach://" <> fileName m'
+     in object $
           [ "type" .= ("document" :: Text),
-            "media" .= m,
-            "thumb" .= thumb,
-            "caption" .= caption,
-            "parse_mode" .= parseMode
+            "media" .= m
           ]
+            <> catMaybes
+              [ "thumb" .=? thumb,
+                "caption" .=? caption,
+                "parse_mode" .=? parseMode
+              ]
 
 instance ToMultipart Mem InputMediaDocument where
   toMultipart InputMediaDocument {..} =
@@ -190,13 +199,15 @@ instance ToJSON InputMediaPhoto where
   toJSON InputMediaPhoto {..} =
     let m = case media of
           Left t -> t
-          Right (Media m) -> "attach://" <> fileName m
-     in object
+          Right (Media m') -> "attach://" <> fileName m'
+     in object $
           [ "type" .= ("photo" :: Text),
-            "media" .= m,
-            "caption" .= caption,
-            "parse_mode" .= parseMode
+            "media" .= m
           ]
+            <> catMaybes
+              [ "caption" .=? caption,
+                "parse_mode" .=? parseMode
+              ]
 
 instance ToMultipart Mem InputMediaPhoto where
   toMultipart InputMediaPhoto {..} =
@@ -218,14 +229,16 @@ instance ToJSON InputMediaVideo where
   toJSON InputMediaVideo {..} =
     let m = case media of
           Left t -> t
-          Right (Media m) -> "attach://" <> fileName m
-     in object
+          Right (Media m') -> "attach://" <> fileName m'
+     in object $
           [ "type" .= ("video" :: Text),
-            "media" .= m,
-            "thumb" .= thumb,
-            "caption" .= caption,
-            "parse_mode" .= parseMode
+            "media" .= m
           ]
+            <> catMaybes
+              [ "thumb" .=? thumb,
+                "caption" .=? caption,
+                "parse_mode" .=? parseMode
+              ]
 
 instance ToMultipart Mem InputMediaVideo where
   toMultipart InputMediaVideo {..} =

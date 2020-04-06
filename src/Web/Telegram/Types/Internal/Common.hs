@@ -14,7 +14,6 @@ import Control.Applicative
 import Data.Aeson
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
 import Servant.API
 import Web.Telegram.Types.Internal.Keyboard
 import Web.Telegram.Types.Internal.Media
@@ -324,7 +323,7 @@ data BotCommand
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via Vanilla BotCommand
+    via OmitNothing BotCommand
   deriving (ToHttpApiData) via Serialize BotCommand
 
 data LabeledPrice
@@ -335,7 +334,7 @@ data LabeledPrice
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via Vanilla LabeledPrice
+    via OmitNothing LabeledPrice
   deriving (ToHttpApiData) via Serialize LabeledPrice
 
 data Invoice
@@ -463,7 +462,7 @@ data GameHighScore
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via Vanilla GameHighScore
+    via OmitNothing GameHighScore
   deriving (ToHttpApiData) via Serialize GameHighScore
 
 data ResponseParameters

@@ -9,7 +9,6 @@ module Web.Telegram.Types.Internal.InlineQuery where
 import Data.Aeson
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
 import Servant.API
 import Web.Telegram.Types.Internal.InputMedia
 import Web.Telegram.Types.Internal.Keyboard

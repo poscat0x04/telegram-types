@@ -9,7 +9,6 @@ module Web.Telegram.Types.Internal.Media where
 import Data.Aeson
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
 import Servant.API
 import Web.Telegram.Types.Internal.User
 import Web.Telegram.Types.Internal.Utils
@@ -146,7 +145,7 @@ data Location
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via Vanilla Location
+    via OmitNothing Location
   deriving (ToHttpApiData) via Serialize Location
 
 data Venue

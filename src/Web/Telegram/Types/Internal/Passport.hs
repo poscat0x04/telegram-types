@@ -8,7 +8,6 @@ module Web.Telegram.Types.Internal.Passport where
 
 import Data.Text (Text)
 import Deriving.Aeson
-import Deriving.Aeson.Stock
 import Servant.API
 import Web.Telegram.Types.Internal.Utils
 
