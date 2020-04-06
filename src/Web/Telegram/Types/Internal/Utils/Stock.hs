@@ -6,6 +6,7 @@
 module Web.Telegram.Types.Internal.Utils.Stock
   ( Snake,
     OmitNothing,
+    UntaggedSum,
     PrefixedSnake,
     Prefixed,
     PrefixedSnake',
@@ -26,6 +27,8 @@ import GHC.TypeLits
 type Snake = CustomJSON '[FieldLabelModifier CamelToSnake, OmitNothingFields]
 
 type OmitNothing = CustomJSON '[OmitNothingFields]
+
+type UntaggedSum = CustomJSON '[SumUntaggedValue, OmitNothingFields]
 
 type PrefixedSnake str = CustomJSON '[FieldLabelModifier (StripPrefix str, CamelToSnake), OmitNothingFields]
 

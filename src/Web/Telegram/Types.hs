@@ -1,6 +1,7 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DerivingVia #-}
 
 module Web.Telegram.Types
   ( -- ** User
@@ -85,10 +86,11 @@ module Web.Telegram.Types
   )
 where
 
+import Data.Aeson
 import Data.Coerce
 import Data.OpenUnion
 import Data.Text (Text)
-import GHC.Generics
+import Deriving.Aeson
 import Servant.API
 import Web.Telegram.Types.Internal.Common
 import Web.Telegram.Types.Internal.Media
@@ -100,6 +102,7 @@ data ChatId
   = ChatId Integer
   | ChanId Text
   deriving (Show, Eq, Generic, Default)
+  deriving (FromJSON, ToJSON) via UntaggedSum ChatId
 
 instance ToHttpApiData ChatId where
   toQueryParam (ChatId i) = toQueryParam i
