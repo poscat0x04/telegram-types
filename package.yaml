@@ -27,9 +27,11 @@ dependencies:
 - deriving-aeson
 - unordered-containers
 - open-union
+- mime-types
 - servant
 - servant-multipart
-- mime-types
+- lens
+- generic-lens
 
 library:
   source-dirs: src
