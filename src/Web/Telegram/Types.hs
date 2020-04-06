@@ -80,21 +80,20 @@ module Web.Telegram.Types
     coe,
     liftUnion,
     QueryR,
+    Default (..),
   )
 where
 
-import Data.Aeson
-import Data.Aeson.Text
 import Data.Coerce
 import Data.OpenUnion
 import Data.Text (Text)
-import Data.Text.Lazy (toStrict)
 import GHC.Generics
 import Servant.API
 import Web.Telegram.Types.Internal.Common
 import Web.Telegram.Types.Internal.Media
 import Web.Telegram.Types.Internal.Sticker
 import Web.Telegram.Types.Internal.User
+import Web.Telegram.Types.Internal.Utils
 
 data ChatId
   = ChatId Integer
