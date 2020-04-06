@@ -1,5 +1,6 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveAnyClass #-}
 
 module Web.Telegram.Types
   ( -- ** User
@@ -98,7 +99,7 @@ import Web.Telegram.Types.Internal.Utils
 data ChatId
   = ChatId Integer
   | ChanId Text
-  deriving (Show, Eq, Generic)
+  deriving (Show, Eq, Generic, Default)
 
 instance ToHttpApiData ChatId where
   toQueryParam (ChatId i) = toQueryParam i
