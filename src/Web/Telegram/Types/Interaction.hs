@@ -16,6 +16,7 @@ module Web.Telegram.Types.Interaction
     ForceReply (..),
     LoginUrl (..),
     ReplyMarkup,
+    Action (..),
   )
 where
 
@@ -44,7 +45,7 @@ instance ToJSON ReplyMarkup where
 
 deriving via Serialize ReplyMarkup instance ToHttpApiData ReplyMarkup
 
-data ChatAction
+data Action
   = Typing
   | UploadPhoto
   | RecordVideo
@@ -56,5 +57,5 @@ data ChatAction
   | RecordVideoNote
   | UploadVideoNote
   deriving (Show, Eq, Ord, Generic, Default)
-  deriving (ToJSON, FromJSON) via Snake ChatAction
-  deriving (ToHttpApiData) via Serialize ChatAction
+  deriving (ToJSON, FromJSON) via Snake Action
+  deriving (ToHttpApiData) via Serialize Action
