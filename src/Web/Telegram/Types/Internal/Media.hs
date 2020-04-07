@@ -187,7 +187,7 @@ data PollAnswer
 
 data PollType
   = Regular
-  | Quid
+  | Quiz
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
