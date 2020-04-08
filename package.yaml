@@ -35,6 +35,14 @@ dependencies:
 
 library:
   source-dirs: src
+  exposed-modules:
+    - Web.Telegram.Types
+    - Web.Telegram.Types.Lens
+    - Web.Telegram.Types.Stock
+    - Web.Telegram.Types.Interaction
+    - Web.Telegram.Types.Inline
+    - Web.Telegram.Types.Input
+    - Web.Telegram.Types.Update
 
 tests:
   telegram-types-test:
