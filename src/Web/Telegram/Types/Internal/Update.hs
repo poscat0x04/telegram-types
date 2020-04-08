@@ -64,7 +64,7 @@ data Update
         pcquery :: C.PreCheckoutQuery
       }
   | -- | New poll state. Bots receive only updates about stopped polls and polls, which are sent by the bot
-    Poll
+    PollUpdate
       { updateId :: Integer,
         poll :: M.Poll
       }
@@ -92,7 +92,7 @@ instance FromJSON Update where
           pair ("callback_query", CallbackQuery),
           pair ("shipping_query", ShippingQuery),
           pair ("pre_checkout_query", PreCheckoutQuery),
-          pair ("poll", Poll),
+          pair ("poll", PollUpdate),
           pair ("poll_answer", PollAnswer)
         ]
     let r = getFirst $ foldMap First l

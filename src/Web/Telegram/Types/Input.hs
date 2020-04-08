@@ -1,6 +1,6 @@
+-- | Sending files
 module Web.Telegram.Types.Input
   ( -- * Sending Media
-    ParseMode (..),
     InputMediaAnimation (..),
     InputMediaAudio (..),
     InputMediaDocument (..),

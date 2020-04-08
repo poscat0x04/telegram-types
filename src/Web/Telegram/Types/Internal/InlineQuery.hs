@@ -17,7 +17,7 @@ import Web.Telegram.Types.Internal.User
 import Web.Telegram.Types.Internal.Utils
 
 data InlineQuery
-  = InlineQuery
+  = IQ
       { queryId :: Text,
         from :: User,
         location :: Maybe Location,
@@ -274,7 +274,7 @@ data InlineQueryResult
   deriving (ToHttpApiData) via Serialize InlineQueryResult
 
 data ChosenInlineResult
-  = ChosenInlineResult
+  = ChosenIR
       { resultId :: Text,
         from :: User,
         location :: Maybe Location,

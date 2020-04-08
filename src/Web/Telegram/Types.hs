@@ -72,11 +72,8 @@ module Web.Telegram.Types
     StickerSet (..),
     MaskPosition (..),
 
-    -- ** Response
-    ResponseParameters (..),
-    ReqResult (..),
-    ReqEither (..),
-    BotCommand (..),
+    -- *** Misc
+    ParseMode (..),
 
     -- *** Utilities
     coe,
@@ -97,6 +94,7 @@ import Web.Telegram.Types.Internal.Media
 import Web.Telegram.Types.Internal.Sticker
 import Web.Telegram.Types.Internal.User
 import Web.Telegram.Types.Internal.Utils
+import Web.Telegram.Types.Internal.InputMedia
 
 data ChatId
   = ChatId Integer

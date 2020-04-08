@@ -58,7 +58,7 @@ data Chat
   deriving (ToHttpApiData) via Serialize Chat
 
 data Message
-  = Message
+  = Msg
       { metadata :: MessageMetadata,
         content :: MessageContent
       }
@@ -69,17 +69,17 @@ instance FromJSON Message where
   parseJSON o = do
     metadata <- parseJSON o
     content <- parseJSON o
-    return Message {..}
+    return Msg {..}
 
 instance ToJSON Message where
-  toJSON Message {..} =
+  toJSON Msg {..} =
     let Object hm1 = toJSON metadata
         Object hm2 = toJSON content
      in Object (hm1 <> hm2)
 
 -- |
 data MessageMetadata
-  = MessageMetadata
+  = MMetadata
       { messageId :: Integer,
         from :: Maybe User,
         date :: Integer,
@@ -242,7 +242,7 @@ data MessageEntity
   deriving (ToHttpApiData) via Serialize MessageEntity
 
 data CallbackQuery
-  = CallbackQuery
+  = CBQuery
       { callbackId :: Text,
         from :: User,
         message :: Message,
@@ -408,7 +408,7 @@ data SuccessfulPayment
   deriving (ToHttpApiData) via Serialize SuccessfulPayment
 
 data ShippingQuery
-  = ShippingQuery
+  = SQuery
       { queryId :: Text,
         from :: User,
         invoicePayload :: Text,
@@ -421,7 +421,7 @@ data ShippingQuery
   deriving (ToHttpApiData) via Serialize ShippingQuery
 
 data PreCheckoutQuery
-  = PreCheckoutQuery
+  = PCQuery
       { queryId :: Text,
         from :: User,
         currency :: Text,
