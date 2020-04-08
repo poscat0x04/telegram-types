@@ -476,24 +476,15 @@ data ResponseParameters
     via Snake ResponseParameters
   deriving (ToHttpApiData) via Serialize ResponseParameters
 
-data ReqResult a
+newtype ReqResult a
   = Ok a
-  | Err Text Integer (Maybe ResponseParameters)
   deriving (Show, Eq, Generic)
 
 instance (FromJSON a) => FromJSON (ReqResult a) where
   parseJSON = withObject "request result" $ \o -> do
-    ok <- o .: "ok"
-    if ok
-      then do
-        a <- o .: "result"
-        a' <- parseJSON a
-        return $ Ok a'
-      else do
-        desc <- o .: "description"
-        errcode <- o .: "error_code"
-        param <- o .:? "parameters"
-        return $ Err desc errcode param
+    a <- o .: "result"
+    a' <- parseJSON a
+    return $ Ok a'
 
 data ReqEither a b
   = LLL a

@@ -2,9 +2,9 @@ module Main where
 
 import Data.Aeson
 import qualified Data.ByteString.Lazy as LBS
-import Web.Telegram.Types.Internal.InputMedia
-import Web.Telegram.Types.Internal.Update
-import Web.Telegram.Types.Internal.Utils.Default
+import Web.Telegram.Types.Input
+import Web.Telegram.Types.Update
+import Web.Telegram.Types
 
 main :: IO ()
 main = do
