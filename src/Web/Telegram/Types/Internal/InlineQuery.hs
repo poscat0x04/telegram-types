@@ -279,7 +279,7 @@ data ChosenInlineResult
         from :: User,
         location :: Maybe Location,
         inlineMessageId :: Maybe Text,
-        qeury :: Text
+        query :: Text
       }
   deriving (Show, Eq, Generic, Default)
   deriving
