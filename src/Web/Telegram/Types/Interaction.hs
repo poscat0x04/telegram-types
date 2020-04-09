@@ -8,7 +8,12 @@
 
 -- | User interactions: customized keyboards, clickable buttons, popups and inline displays
 module Web.Telegram.Types.Interaction
-  ( ReplyKeyboardMarkup (..),
+  ( -- ** queries
+    CallbackQuery (..),
+    ShippingQuery (..),
+    PreCheckoutQuery (..),
+    -- ** replys
+    ReplyKeyboardMarkup (..),
     KeyboardButton (..),
     KeyboardButtonPollType (..),
     ReplyKeyboardRemove (..),
@@ -26,6 +31,7 @@ import Deriving.Aeson
 import Servant.API
 import Web.Telegram.Types.Internal.Keyboard
 import Web.Telegram.Types.Internal.Utils
+import Web.Telegram.Types.Internal.Common
 
 type ReplyMarkup =
   Union

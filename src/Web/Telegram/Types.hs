@@ -10,7 +10,9 @@ module Web.Telegram.Types
     -- ** Message
     Message (..),
     MessageMetadata (..),
+    MessageEntity (..),
     MessageContent (..),
+    ParseMode (..),
 
     -- ** Chat
     ChatId (..),
@@ -73,7 +75,7 @@ module Web.Telegram.Types
     MaskPosition (..),
 
     -- *** Misc
-    ParseMode (..),
+    SuccessfulPayment (..),
 
     -- *** Utilities
     coe,
