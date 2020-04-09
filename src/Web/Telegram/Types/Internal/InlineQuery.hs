@@ -27,7 +27,7 @@ data InlineQuery
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via PrefixedSnake "query" InlineQuery
+    via PrefixedSnake' "query" InlineQuery
   deriving (ToHttpApiData) via Serialize InlineQuery
 
 data InlineQueryResult
