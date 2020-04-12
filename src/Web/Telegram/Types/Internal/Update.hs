@@ -30,7 +30,7 @@ data Update
       }
   | -- | New incoming channel post of any kind — text, photo, sticker, etc.
     ChannelPost
-      { upateId :: Integer,
+      { updateId :: Integer,
         message :: C.Message
       }
   | -- | New version of a channel post that is known to the bot and was edited
