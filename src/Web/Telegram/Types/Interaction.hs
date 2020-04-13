@@ -18,6 +18,7 @@ module Web.Telegram.Types.Interaction
     KeyboardButtonPollType (..),
     ReplyKeyboardRemove (..),
     InlineKeyboardMarkup (..),
+    InlineKeyboardButton (..),
     ForceReply (..),
     LoginUrl (..),
     ReplyMarkup,
