@@ -14,6 +14,7 @@ import Deriving.Aeson
 import qualified Web.Telegram.Types.Internal.Common as C
 import qualified Web.Telegram.Types.Internal.InlineQuery as IQ
 import qualified Web.Telegram.Types.Internal.Media as M
+import Web.Telegram.Types.Internal.UpdateType (UpdateType)
 import Web.Telegram.Types.Internal.Utils
 
 -- | An incoming update
@@ -116,7 +117,7 @@ data WebhookInfo
         -- | Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
         maxConnections :: Maybe Integer,
         -- | A list of update types the bot is subscribed to. Defaults to all update types
-        allowedUpdates :: Maybe [Text]
+        allowedUpdates :: Maybe [UpdateType]
       }
   deriving (Show, Eq, Generic, Default)
   deriving
