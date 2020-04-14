@@ -1,3 +1,4 @@
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DerivingVia #-}
@@ -20,4 +21,6 @@ data UpdateType
   | PollUpdate
   | PollAnswer
   deriving (Show, Eq, Generic, Default, Enum)
-  deriving (FromJSON, ToJSON) via Snake UpdateType
+  deriving
+    (FromJSON, ToJSON)
+    via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] UpdateType
