@@ -191,7 +191,7 @@ data PollType
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via CustomJSON '[ConstructorTagModifier CamelToSnake] PollType
+    via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] PollType
   deriving (ToHttpApiData) via Serialize PollType
 
 data Poll

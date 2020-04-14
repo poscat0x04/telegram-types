@@ -30,14 +30,14 @@ data ChatType
   deriving (Show, Eq, Ord, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via CustomJSON '[SumUntaggedValue, FieldLabelModifier CamelToSnake] ChatType
+    via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] ChatType
   deriving (ToHttpApiData) via Serialize ChatType
 
 -- | https://core.telegram.org/bots/api#chat
 data Chat
   = Chat
       { chatId :: Integer,
-        chatType :: Text,
+        chatType :: ChatType,
         title :: Maybe Text,
         username :: Maybe Text,
         firstName :: Maybe Text,
@@ -223,7 +223,7 @@ data MessageEntityType
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via CustomJSON '[ConstructorTagModifier CamelToSnake] MessageEntityType
+    via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] MessageEntityType
   deriving (ToHttpApiData) via Serialize MessageEntityType
 
 data MessageEntity

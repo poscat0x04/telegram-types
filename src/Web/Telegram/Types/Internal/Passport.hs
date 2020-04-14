@@ -143,5 +143,5 @@ data EncryptedPassportElementType
   deriving (Show, Eq, Ord, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via CustomJSON '[ConstructorTagModifier CamelToSnake] EncryptedPassportElementType
+    via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] EncryptedPassportElementType
   deriving (ToHttpApiData) via Serialize EncryptedPassportElementType
