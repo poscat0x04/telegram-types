@@ -43,6 +43,7 @@ library:
     - Web.Telegram.Types.Inline
     - Web.Telegram.Types.Input
     - Web.Telegram.Types.Update
+    - Web.Telegram.Types.UpdateType
 
 tests:
   telegram-types-test:
