@@ -2,7 +2,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Web.Telegram.Types.Lens where
+module Web.Telegram.Types.Lens {-# DEPRECATED "Use labels from generics-lens instead" #-}  where
 
 import Control.Lens
 import Data.Generics.Product
