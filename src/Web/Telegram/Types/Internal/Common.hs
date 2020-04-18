@@ -270,10 +270,23 @@ data ChatPhoto
     via Snake ChatPhoto
   deriving (ToHttpApiData) via Serialize ChatPhoto
 
+data ChatStatus
+  = Creator
+  | Administrator
+  | Member
+  | Restricted
+  | Left
+  | Kicked
+  deriving (Show, Eq, Generic, Default)
+  deriving
+    (FromJSON, ToJSON)
+    via UntaggedSum ChatStatus
+  deriving (ToHttpApiData) via Serialize ChatStatus
+
 data ChatMember
   = ChatMember
       { user :: User,
-        status :: Text,
+        status :: ChatStatus,
         customTitle :: Text,
         untilDate :: Maybe Integer,
         canBeEdited :: Maybe Bool,
