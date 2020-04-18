@@ -280,7 +280,7 @@ data ChatStatus
   deriving (Show, Eq, Generic, Default)
   deriving
     (FromJSON, ToJSON)
-    via UntaggedSum ChatStatus
+    via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] ChatStatus
   deriving (ToHttpApiData) via Serialize ChatStatus
 
 data ChatMember
