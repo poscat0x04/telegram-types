@@ -1,6 +1,6 @@
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DerivingVia #-}
 
 module Web.Telegram.Types
@@ -19,6 +19,7 @@ module Web.Telegram.Types
     Chat (..),
     ChatPermissions (..),
     ChatPhoto (..),
+    ChatStatus (..),
     ChatMember (..),
 
     -- ** Media Types
@@ -92,11 +93,11 @@ import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
 import Web.Telegram.Types.Internal.Common
+import Web.Telegram.Types.Internal.InputMedia
 import Web.Telegram.Types.Internal.Media
 import Web.Telegram.Types.Internal.Sticker
 import Web.Telegram.Types.Internal.User
 import Web.Telegram.Types.Internal.Utils
-import Web.Telegram.Types.Internal.InputMedia
 
 data ChatId
   = ChatId Integer
