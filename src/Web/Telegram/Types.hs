@@ -11,12 +11,14 @@ module Web.Telegram.Types
     Message (..),
     MessageMetadata (..),
     MessageEntity (..),
+    MessageEntityType (..),
     MessageContent (..),
     ParseMode (..),
 
     -- ** Chat
     ChatId (..),
     Chat (..),
+    ChatType (..),
     ChatPermissions (..),
     ChatPhoto (..),
     ChatStatus (..),
@@ -75,8 +77,10 @@ module Web.Telegram.Types
     StickerSet (..),
     MaskPosition (..),
 
-    -- *** Misc
+    -- *** Payment
     SuccessfulPayment (..),
+    OrderInfo (..),
+    ShippingAddress (..),
 
     -- *** Utilities
     coe,
