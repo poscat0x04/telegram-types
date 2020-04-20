@@ -12,9 +12,11 @@ module Web.Telegram.Types.Interaction
     CallbackQuery (..),
     ShippingQuery (..),
     PreCheckoutQuery (..),
+
     -- ** replys
     ReplyKeyboardMarkup (..),
     KeyboardButton (..),
+    KeyboardButtonAddon (..),
     KeyboardButtonPollType (..),
     ReplyKeyboardRemove (..),
     InlineKeyboardMarkup (..),
@@ -30,9 +32,9 @@ import Data.Aeson
 import Data.OpenUnion
 import Deriving.Aeson
 import Servant.API
+import Web.Telegram.Types.Internal.Common
 import Web.Telegram.Types.Internal.Keyboard
 import Web.Telegram.Types.Internal.Utils
-import Web.Telegram.Types.Internal.Common
 
 type ReplyMarkup =
   Union

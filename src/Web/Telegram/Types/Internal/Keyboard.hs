@@ -3,9 +3,13 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DerivingVia #-}
 {-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards #-}
 
 module Web.Telegram.Types.Internal.Keyboard where
 
+import Data.Aeson
+import Data.Aeson.Types
 import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
@@ -22,22 +26,32 @@ data ReplyKeyboardMarkup
       }
   deriving (Show, Eq, Generic, Default, Hashable)
   deriving
-    (FromJSON, ToJSON)
+    (ToJSON)
     via Snake ReplyKeyboardMarkup
   deriving (ToHttpApiData) via Serialize ReplyKeyboardMarkup
 
 data KeyboardButton
   = KeyboardButton
       { text :: Text,
-        requestContact :: Maybe Bool,
-        requestLocation :: Maybe Bool,
-        requestPoll :: Maybe KeyboardButtonPollType
+        addon :: Maybe KeyboardButtonAddon
       }
+  deriving (Show, Eq, Generic, Default, Hashable)
+  deriving (ToHttpApiData) via Serialize KeyboardButton
+
+instance ToJSON KeyboardButton where
+  toJSON KeyboardButton {..} =
+    let Object t = object ["text" .= text]
+        Object a = maybe emptyObject toJSON addon
+     in Object $ t <> a
+
+data KeyboardButtonAddon
+  = RequestContact Bool
+  | RequestLocation Bool
+  | RequestPoll KeyboardButtonPollType
   deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
-    via Snake KeyboardButton
-  deriving (ToHttpApiData) via Serialize KeyboardButton
+    via CustomJSON '[ConstructorTagModifier CamelToSnake, SumObjectWithSingleField] KeyboardButtonAddon
 
 newtype KeyboardButtonPollType
   = KeyboardButtonPollType
