@@ -11,6 +11,7 @@ module Web.Telegram.Types.Internal.User
 where
 
 import Data.Aeson
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -38,7 +39,7 @@ data User
         -- | True, if the bot supports inline queries. Returned only in getMe.
         supportsInlineQueries :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake' "user" User

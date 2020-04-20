@@ -5,6 +5,7 @@
 
 module Web.Telegram.Types.Internal.UpdateType where
 
+import Data.Hashable
 import Deriving.Aeson
 import Web.Telegram.Types.Internal.Utils
 
@@ -20,7 +21,7 @@ data UpdateType
   | PreCheckoutQuery
   | PollUpdate
   | PollAnswer
-  deriving (Show, Eq, Generic, Default, Enum)
+  deriving (Show, Eq, Generic, Default, Ord, Enum, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] UpdateType

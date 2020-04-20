@@ -7,6 +7,7 @@
 module Web.Telegram.Types.Internal.Media where
 
 import Data.Aeson
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -21,7 +22,7 @@ data PhotoSize
         height :: Integer,
         fileSize :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake PhotoSize
@@ -38,7 +39,7 @@ data Audio
         fileSize :: Maybe Integer,
         thumb :: Maybe PhotoSize
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Audio
@@ -53,7 +54,7 @@ data Document
         mimeType :: Maybe Text,
         fileSize :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Document
@@ -70,7 +71,7 @@ data Video
         mimeType :: Maybe Text,
         fileSize :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Video
@@ -88,7 +89,7 @@ data Animation
         mimeType :: Maybe Text,
         fileSize :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Animation
@@ -102,7 +103,7 @@ data Voice
         mimeType :: Maybe Text,
         fileSize :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Voice
@@ -117,7 +118,7 @@ data VideoNote
         thumb :: Maybe PhotoSize,
         fileSize :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake VideoNote
@@ -131,7 +132,7 @@ data Contact
         userId :: Maybe Integer,
         vcard :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Contact
@@ -142,7 +143,7 @@ data Location
       { longitude :: Float,
         latitude :: Float
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via OmitNothing Location
@@ -156,7 +157,7 @@ data Venue
         foursquareId :: Maybe Text,
         foursquareType :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Venue
@@ -167,7 +168,7 @@ data PollOption
       { text :: Text,
         voterCount :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake PollOption
@@ -179,7 +180,7 @@ data PollAnswer
         user :: User,
         optionIds :: [Integer]
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "poll" PollAnswer
@@ -188,7 +189,7 @@ data PollAnswer
 data PollType
   = Regular
   | Quiz
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] PollType
@@ -206,7 +207,7 @@ data Poll
         allowsMultipleAnswers :: Bool,
         correctOptionId :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "poll" Poll
@@ -217,7 +218,7 @@ data UserProfilePhotos
       { totalCount :: Integer,
         photos :: [[PhotoSize]]
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake UserProfilePhotos
@@ -230,7 +231,7 @@ data File
         fileSize :: Maybe Integer,
         filePath :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake File

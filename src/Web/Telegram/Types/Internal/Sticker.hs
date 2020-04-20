@@ -5,6 +5,7 @@
 
 module Web.Telegram.Types.Internal.Sticker where
 
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -24,7 +25,7 @@ data Sticker
         maskPosition :: Maybe MaskPosition,
         fileSize :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Sticker
@@ -38,7 +39,7 @@ data StickerSet
         containsMasks :: Bool,
         stickers :: [Sticker]
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake StickerSet
@@ -51,7 +52,7 @@ data MaskPosition
         yShift :: Float,
         scale :: Float
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake MaskPosition

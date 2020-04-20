@@ -6,6 +6,7 @@
 
 module Web.Telegram.Types.Internal.Keyboard where
 
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -19,7 +20,7 @@ data ReplyKeyboardMarkup
         oneTimeKeyboard :: Maybe Bool,
         selective :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ReplyKeyboardMarkup
@@ -32,7 +33,7 @@ data KeyboardButton
         requestLocation :: Maybe Bool,
         requestPoll :: Maybe KeyboardButtonPollType
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake KeyboardButton
@@ -42,7 +43,7 @@ newtype KeyboardButtonPollType
   = KeyboardButtonPollType
       { pollType :: Maybe PollType
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "poll" KeyboardButtonPollType
@@ -53,7 +54,7 @@ data ReplyKeyboardRemove
       { removeKeyboard :: Bool,
         selective :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ReplyKeyboardRemove
@@ -63,7 +64,7 @@ newtype InlineKeyboardMarkup
   = InlineKeyboardMarkup
       { inlineKeyboard :: [[InlineKeyboardButton]]
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (ToJSON, FromJSON)
     via Snake InlineKeyboardMarkup
@@ -79,7 +80,7 @@ data InlineKeyboardButton
         switchInlineQueryCurrentChat :: Maybe Text,
         pay :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake InlineKeyboardButton
@@ -92,7 +93,7 @@ data LoginUrl
         botUsername :: Maybe Text,
         requestWriteAccess :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake LoginUrl
@@ -103,7 +104,7 @@ data ForceReply
       { forceReply :: Bool,
         selective :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ForceReply

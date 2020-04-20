@@ -6,6 +6,7 @@
 
 module Web.Telegram.Types.Internal.Passport where
 
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -16,7 +17,7 @@ data PassportData
       { passportData :: [EncryptedPassportElement],
         credentials :: EncryptedCredentials
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "passport" PassportData
@@ -29,7 +30,7 @@ data PassportFile
         fileSize :: Integer,
         fileDate :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (ToJSON, FromJSON)
     via Snake PassportFile
@@ -48,7 +49,7 @@ data EncryptedPassportElement
         translation :: Maybe [PassportFile],
         hash :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (ToJSON, FromJSON)
     via PrefixedSnake "element" EncryptedPassportElement
@@ -59,7 +60,7 @@ data EncryptedCredentials
         hash :: Text,
         secret :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (ToJSON, FromJSON)
     via PrefixedSnake "credential" EncryptedCredentials
@@ -120,7 +121,7 @@ data PassportElementError
         elementHash :: Text,
         message :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (ToJSON, FromJSON)
     via PrefixedSnake "error" PassportElementError
@@ -140,7 +141,7 @@ data EncryptedPassportElementType
   | TemporaryRegistration
   | PhoneNumber
   | Email
-  deriving (Show, Eq, Ord, Generic, Default)
+  deriving (Show, Eq, Ord, Enum, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] EncryptedPassportElementType

@@ -15,4 +15,5 @@ pkgs: with pkgs;
   world-peace
   row-types
   open-union
+  hashable
 ]

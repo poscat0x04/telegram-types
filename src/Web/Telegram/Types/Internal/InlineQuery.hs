@@ -7,6 +7,7 @@
 module Web.Telegram.Types.Internal.InlineQuery where
 
 import Data.Aeson
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -24,7 +25,7 @@ data InlineQuery
         query :: Text,
         offset :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake' "query" InlineQuery
@@ -267,7 +268,7 @@ data InlineQueryResult
         replyMarkup :: Maybe InlineKeyboardMarkup,
         inputMessageContent :: Maybe InputMessageContent
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "result" InlineQueryResult
@@ -281,7 +282,7 @@ data ChosenInlineResult
         inlineMessageId :: Maybe Text,
         query :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ChosenInlineResult

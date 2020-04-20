@@ -14,6 +14,7 @@
 module Web.Telegram.Types.Internal.InputMedia where
 
 import Data.Aeson
+import Data.Hashable
 import Data.Maybe (catMaybes)
 import Data.OpenUnion
 import Data.Text (Text)
@@ -27,7 +28,7 @@ data ParseMode
   = MarkdownV2
   | HTML
   | Markdown
-  deriving (Show, Eq, Ord, Generic, Default)
+  deriving (Show, Eq, Ord, Enum, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via OmitNothing ParseMode
@@ -88,7 +89,7 @@ data InputMediaAnimation
         height :: Maybe Integer,
         duration :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving (ToHttpApiData) via Serialize InputMediaAnimation
 
 (.=?) :: ToJSON v => Text -> Maybe v -> Maybe (Text, Value)
@@ -128,7 +129,7 @@ data InputMediaAudio
         performer :: Maybe Text,
         title :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving (ToHttpApiData) via Serialize InputMediaAudio
 
 instance ToJSON InputMediaAudio where
@@ -162,7 +163,7 @@ data InputMediaDocument
         caption :: Maybe Text,
         parseMode :: Maybe ParseMode
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving (ToHttpApiData) via Serialize InputMediaDocument
 
 instance ToJSON InputMediaDocument where
@@ -192,7 +193,7 @@ data InputMediaPhoto
         caption :: Maybe Text,
         parseMode :: Maybe ParseMode
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving (ToHttpApiData) via Serialize InputMediaPhoto
 
 instance ToJSON InputMediaPhoto where
@@ -222,7 +223,7 @@ data InputMediaVideo
         caption :: Maybe Text,
         parseMode :: Maybe ParseMode
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving (ToHttpApiData) via Serialize InputMediaVideo
 
 instance ToJSON InputMediaVideo where
@@ -271,7 +272,7 @@ data InputMessageContent
         lastName :: Maybe Text,
         vcard :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake InputMessageContent

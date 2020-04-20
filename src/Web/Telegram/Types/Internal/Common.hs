@@ -12,6 +12,7 @@ module Web.Telegram.Types.Internal.Common where
 
 import Control.Applicative
 import Data.Aeson
+import Data.Hashable
 import Data.Text (Text)
 import Deriving.Aeson
 import Servant.API
@@ -27,7 +28,7 @@ data ChatType
   | Group
   | Supergroup
   | Channel
-  deriving (Show, Eq, Ord, Generic, Default)
+  deriving (Show, Eq, Ord, Enum, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] ChatType
@@ -51,7 +52,7 @@ data Chat
         stickerSetName :: Maybe Integer,
         canSetStickerSet :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "chat" Chat
@@ -62,7 +63,7 @@ data Message
       { metadata :: MessageMetadata,
         content :: MessageContent
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving (ToHttpApiData) via Serialize Message
 
 instance FromJSON Message where
@@ -96,7 +97,7 @@ data MessageMetadata
         authorSignature :: Maybe Text,
         replyMarkup :: Maybe InlineKeyboardMarkup
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, FieldLabelModifier CamelToSnake] MessageMetadata
@@ -198,7 +199,7 @@ data MessageContent
   | PassportData
       { passPortData :: PassportData
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, FieldLabelModifier CamelToSnake] MessageContent
@@ -220,7 +221,7 @@ data MessageEntityType
   | Pre
   | TextLink
   | TextMention
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Ord, Enum, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] MessageEntityType
@@ -235,7 +236,7 @@ data MessageEntity
         user :: Maybe User,
         language :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "entity" MessageEntity
@@ -251,7 +252,7 @@ data CallbackQuery
         callbackData :: Maybe Text,
         gameShortName :: Maybe Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "callback" CallbackQuery
@@ -264,7 +265,7 @@ data ChatPhoto
         bigFileId :: Text,
         bitFileUniqueId :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ChatPhoto
@@ -277,7 +278,7 @@ data ChatStatus
   | Restricted
   | Left
   | Kicked
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Ord, Enum, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via CustomJSON '[SumUntaggedValue, ConstructorTagModifier CamelToSnake] ChatStatus
@@ -305,7 +306,7 @@ data ChatMember
         canSendOtherMesssages :: Maybe Bool,
         canAddWebPagePreviews :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ChatMember
@@ -322,7 +323,7 @@ data ChatPermissions
         canInviteUsers :: Maybe Bool,
         canPinMessages :: Maybe Bool
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ChatPermissions
@@ -333,7 +334,7 @@ data BotCommand
       { command :: Text,
         description :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via OmitNothing BotCommand
@@ -344,7 +345,7 @@ data LabeledPrice
       { label :: Text,
         amount :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via OmitNothing LabeledPrice
@@ -358,7 +359,7 @@ data Invoice
         currency :: Text,
         totalAmount :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Invoice
@@ -373,7 +374,7 @@ data ShippingAddress
         streetLine2 :: Text,
         postCode :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ShippingAddress
@@ -386,7 +387,7 @@ data OrderInfo
         email :: Maybe Text,
         shippingAddress :: ShippingAddress
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake OrderInfo
@@ -398,7 +399,7 @@ data ShippingOption
         title :: Text,
         prices :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "option" ShippingOption
@@ -414,7 +415,7 @@ data SuccessfulPayment
         telegramPaymentChargeId :: Text,
         providerPaymentChargeId :: Text
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake SuccessfulPayment
@@ -427,7 +428,7 @@ data ShippingQuery
         invoicePayload :: Text,
         shippingAddress :: ShippingAddress
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "query" ShippingQuery
@@ -443,7 +444,7 @@ data PreCheckoutQuery
         shippingOptionId :: Maybe String,
         orderInfo :: Maybe OrderInfo
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via PrefixedSnake "query" PreCheckoutQuery
@@ -458,7 +459,7 @@ data Game
         textEntities :: Maybe MessageEntity,
         animation :: Animation
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake Game
@@ -472,7 +473,7 @@ data GameHighScore
         user :: User,
         score :: Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via OmitNothing GameHighScore
@@ -483,7 +484,7 @@ data ResponseParameters
       { migrateToChatId :: Maybe Integer,
         retryAfter :: Maybe Integer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake ResponseParameters

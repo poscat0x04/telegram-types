@@ -8,6 +8,7 @@
 module Web.Telegram.Types.Internal.Update where
 
 import Data.Aeson
+import Data.Hashable
 import Data.Monoid
 import Data.Text (Text)
 import Deriving.Aeson
@@ -74,7 +75,7 @@ data Update
       { updateId :: Integer,
         answer :: M.PollAnswer
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
 
 instance FromJSON Update where
   parseJSON = withObject "Update object" $ \o -> do
@@ -119,7 +120,7 @@ data WebhookInfo
         -- | A list of update types the bot is subscribed to. Defaults to all update types
         allowedUpdates :: Maybe [UpdateType]
       }
-  deriving (Show, Eq, Generic, Default)
+  deriving (Show, Eq, Generic, Default, Hashable)
   deriving
     (FromJSON, ToJSON)
     via Snake WebhookInfo
