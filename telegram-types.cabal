@@ -1,0 +1,83 @@
+cabal-version:   3.0
+name:            telegram-types
+version:         0.1.0
+
+-- synopsis:
+-- description:
+-- category:
+license:         BSD-3-Clause
+license-file:    LICENSE
+author:          Poscat
+maintainer:      Poscat <poscat@mail.poscat.moe>
+copyright:       Copyright (c) Poscat 2021
+stability:       alpha
+homepage:        https://github.com/poscat0x04/telegram-types
+bug-reports:     https://github.com/poscat0x04/telegram-types/issues
+extra-doc-files:
+  CHANGELOG.md
+  README.md
+
+common common-attrs
+  build-depends:
+    , aeson
+    , base            >=4.10 && <5
+    , bytestring
+    , deriving-aeson
+    , text
+    , time
+
+  default-language:   Haskell2010
+  default-extensions:
+    NoStarIsType
+    BangPatterns
+    ConstraintKinds
+    DataKinds
+    DefaultSignatures
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    DerivingStrategies
+    DuplicateRecordFields
+    EmptyCase
+    FlexibleContexts
+    FlexibleInstances
+    FunctionalDependencies
+    GADTs
+    GeneralizedNewtypeDeriving
+    InstanceSigs
+    KindSignatures
+    LambdaCase
+    MultiWayIf
+    NamedFieldPuns
+    OverloadedStrings
+    PartialTypeSignatures
+    PatternSynonyms
+    QuantifiedConstraints
+    RecordWildCards
+    RoleAnnotations
+    ScopedTypeVariables
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeFamilyDependencies
+    TypeOperators
+    ViewPatterns
+
+library
+  import:          common-attrs
+  build-depends:
+  exposed-modules:
+  other-modules:
+  hs-source-dirs:  src
+
+test-suite telegram-types-test
+  import:         common-attrs
+  type:           exitcode-stdio-1.0
+  build-depends:  telegram-types
+  hs-source-dirs: test
+  main-is:        Spec.hs
+
+source-repository head
+  type:     git
+  location: https://github.com/poscat0x04/telegram-types

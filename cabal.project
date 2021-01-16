@@ -1,0 +1,13 @@
+packages: .
+
+package telegram-types
+  ghc-options: -Wall
+               -Wincomplete-uni-patterns
+               -Wincomplete-record-updates
+               -Wunused-packages
+  documentation: True
+  haddock-html: True
+  haddock-hoogle: True
+  haddock-internal: True
+  test-show-details: streaming
+
