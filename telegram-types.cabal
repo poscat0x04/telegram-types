@@ -38,6 +38,7 @@ common common-attrs
     DeriveGeneric
     DeriveTraversable
     DerivingStrategies
+    DerivingVia
     DuplicateRecordFields
     EmptyCase
     FlexibleContexts
@@ -69,6 +70,7 @@ library
   build-depends:
   exposed-modules:
   other-modules:
+   Common
   hs-source-dirs:  src
 
 test-suite telegram-types-test
