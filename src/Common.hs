@@ -11,16 +11,29 @@ module Common
     NoFlatten (..),
     Text,
     module X,
+    vanilla,
+    snake,
+    prefixedSnake,
+    sumSnake,
+    prefixedSumSnake,
+    mkLabel,
   )
 where
 
 import Data.Aeson as X
+import Data.Aeson.TH as X
 import Data.Aeson.Types
+import Data.List (stripPrefix)
+import Data.Maybe (fromMaybe)
+import Data.Proxy
 import Data.String (IsString)
-import Data.Text (Text, pack)
+import Data.Text (Text, pack, unpack)
 import Data.Time.Clock.POSIX
 import Deriving.Aeson as X
 import GHC.Generics
+import GHC.TypeLits
+import Optics.Core ((&), (.~))
+import Optics.TH as X
 
 class GDefault f where
   gdef :: f a
@@ -55,7 +68,7 @@ instance Default () where
 instance Default Bool where
   def = False
 
-instance Default Int where
+instance {-# OVERLAPPABLE #-} Num a => Default a where
   def = 0
 
 instance Default Text where
@@ -70,6 +83,24 @@ instance Default a => Default [a] where
 instance Default POSIXTime where
   def = 0
 
+tryStrip :: String -> String -> String
+tryStrip pfx s = fromMaybe s (stripPrefix pfx s)
+
+vanilla :: X.Options
+vanilla = defaultOptions {omitNothingFields = True}
+
+prefixedSnake :: String -> X.Options
+prefixedSnake pfx = defaultOptions {omitNothingFields = True, fieldLabelModifier = camelTo2 '_' . tryStrip pfx}
+
+snake :: X.Options
+snake = prefixedSnake "_"
+
+sumSnake :: X.Options
+sumSnake = defaultOptions {sumEncoding = UntaggedValue, constructorTagModifier = camelTo2 '_'}
+
+prefixedSumSnake :: String -> X.Options
+prefixedSumSnake pfx = defaultOptions {sumEncoding = ObjectWithSingleField, constructorTagModifier = camelTo2 '_' . tryStrip pfx}
+
 type Vanilla = CustomJSON '[OmitNothingFields]
 
 type Snake = CustomJSON '[FieldLabelModifier (StripPrefix "_", CamelToSnake), OmitNothingFields]
@@ -82,7 +113,19 @@ newtype Flatten a = Flatten {unFlatten :: a}
   deriving newtype (Show, Eq)
 
 newtype NoFlatten a = NoFlatten {unNoFlatten :: a}
-  deriving newtype (Show, Eq, IsString)
+  deriving newtype (Show, Eq, Num, IsString, Default)
+
+data Tag (t :: k) = Tag
+  deriving stock (Show, Eq)
+
+instance KnownSymbol t => FromJSON (Tag t) where
+  parseJSON = withText "tag" $ \t ->
+    if t == pack (symbolVal (Proxy @t))
+      then pure Tag
+      else fail ("unknown tag: " <> unpack t)
+
+instance KnownSymbol t => ToJSON (Tag t) where
+  toJSON _ = String $ pack $ symbolVal $ Proxy @t
 
 class GFlattenJSON f where
   gToJSON :: f a -> Value
@@ -116,3 +159,5 @@ instance (Generic a, GFlattenJSON (Rep a)) => ToJSON (Flatten a) where
 
 instance (Generic a, GFlattenJSON (Rep a)) => FromJSON (Flatten a) where
   parseJSON = (Flatten . to <$>) . gFromJSON
+
+mkLabel = makeFieldLabelsWith (noPrefixFieldLabels & lensField .~ mappingNamer (pure . tryStrip "_"))

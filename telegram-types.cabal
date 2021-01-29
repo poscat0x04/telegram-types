@@ -20,12 +20,14 @@ extra-doc-files:
 common common-attrs
   build-depends:
     , aeson
-    , base            >=4.10 && <5
+    , base         >=4.10 && <5
     , bytestring
-    , deriving-aeson
+    , optics-core
+    , optics-th
     , text
     , time
 
+  ghc-options:        -funbox-strict-fields
   default-language:   Haskell2010
   default-extensions:
     NoStarIsType
@@ -58,19 +60,34 @@ common common-attrs
     RecordWildCards
     RoleAnnotations
     ScopedTypeVariables
+    StrictData
+    TemplateHaskell
     TupleSections
     TypeApplications
     TypeFamilies
     TypeFamilyDependencies
     TypeOperators
+    UndecidableInstances
     ViewPatterns
 
 library
   import:          common-attrs
   build-depends:
   exposed-modules:
-  other-modules:
-   Common
+    Web.Telegram.Types.Internal.Common
+    Web.Telegram.Types.Internal.InlineQuery
+    Web.Telegram.Types.Internal.InputMedia
+    Web.Telegram.Types.Internal.Keyboard
+    Web.Telegram.Types.Internal.Media
+    Web.Telegram.Types.Internal.MessageEntity
+    Web.Telegram.Types.Internal.Passport
+    Web.Telegram.Types.Internal.Payment
+    Web.Telegram.Types.Internal.Poll
+    Web.Telegram.Types.Internal.Sticker
+    Web.Telegram.Types.Internal.Update
+    Web.Telegram.Types.Internal.User
+
+  other-modules:   Common
   hs-source-dirs:  src
 
 test-suite telegram-types-test
