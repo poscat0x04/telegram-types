@@ -3,7 +3,7 @@ module Web.Telegram.Types.Internal.PhotoSize where
 import Common
 
 -- | One size of a photo or a
---  [file](https://core.telegram.org/bots/api#document)/[sticker](https://core.telegram.org/bots/api#sticker) thumbnail.
+--  [file](https://core.telegram.org/bots/api#document)\/[sticker](https://core.telegram.org/bots/api#sticker) thumbnail.
 data PhotoSize = PhotoSize
   { -- | Identifier for this file, which can be used to download or reuse the file
     fileId :: Text,

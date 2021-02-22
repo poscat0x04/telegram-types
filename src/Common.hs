@@ -143,6 +143,8 @@ instance (Generic a, GFlattenJSON (Rep a)) => FromJSON (Flatten a) where
 
 type role NoFlatten representational
 
+-- | A helper type that marks a field so that it is not flattened when
+--   being encoded to JSON.
 newtype NoFlatten a = NoFlatten {unNoFlatten :: a}
   deriving newtype (Show, Eq, Num, IsString, Default)
 
@@ -245,6 +247,9 @@ instance (Generic a, GToParts (Rep a)) => ToParts (SnakeParts a) where
     where
       mod = pack . camelTo2 '_' . unpack . tryStrip' "_"
 
+-- | A type that can be encoded as a list of parts. Some request requires files to be uploaded,
+--   and as such, JSON cannot be used as the HTTP request body. We implement this typeclass
+--   for those requests instead.
 class ToParts a where
   toParts :: Applicative m => a -> [PartM m]
   default toParts :: (Generic a, GToParts (Rep a), Applicative m) => a -> [PartM m]
