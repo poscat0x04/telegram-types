@@ -20,8 +20,13 @@ extra-doc-files:
 common common-attrs
   build-depends:
     , aeson
-    , base         >=4.10 && <5
+    , base             >=4.10 && <5
     , bytestring
+    , conduit
+    , containers
+    , http-client
+    , http-client-tls
+    , http-conduit
     , optics-core
     , optics-th
     , text
@@ -74,20 +79,143 @@ library
   import:          common-attrs
   build-depends:
   exposed-modules:
-    Web.Telegram.Types.Internal.Common
+
+  -- cabal-fmt: expand src
+  other-modules:
+    Common
+    Utils
+    Web.Telegram.Types.Internal.Animation
+    Web.Telegram.Types.Internal.API.AddStickerToSet
+    Web.Telegram.Types.Internal.API.AnswerCallbackQuery
+    Web.Telegram.Types.Internal.API.AnswerInlineQuery
+    Web.Telegram.Types.Internal.API.AnswerPreCheckoutQuery
+    Web.Telegram.Types.Internal.API.AnswerShippingQuery
+    Web.Telegram.Types.Internal.API.ChatId
+    Web.Telegram.Types.Internal.API.CopyMessage
+    Web.Telegram.Types.Internal.API.CreateNewStickerSet
+    Web.Telegram.Types.Internal.API.DeleteChatPhoto
+    Web.Telegram.Types.Internal.API.DeleteChatStickerSet
+    Web.Telegram.Types.Internal.API.DeleteMessage
+    Web.Telegram.Types.Internal.API.DeleteStickerFromSet
+    Web.Telegram.Types.Internal.API.DeleteWebhook
+    Web.Telegram.Types.Internal.API.EditMessageCaption
+    Web.Telegram.Types.Internal.API.EditMessageLiveLocation
+    Web.Telegram.Types.Internal.API.EditMessageMedia
+    Web.Telegram.Types.Internal.API.EditMessageReplyMarkup
+    Web.Telegram.Types.Internal.API.EditMessageText
+    Web.Telegram.Types.Internal.API.ExportChatInviteLink
+    Web.Telegram.Types.Internal.API.ForwardMessage
+    Web.Telegram.Types.Internal.API.GetChat
+    Web.Telegram.Types.Internal.API.GetChatAdministrators
+    Web.Telegram.Types.Internal.API.GetChatMember
+    Web.Telegram.Types.Internal.API.GetChatMembersCount
+    Web.Telegram.Types.Internal.API.GetGameHighScores
+    Web.Telegram.Types.Internal.API.GetStickerSet
+    Web.Telegram.Types.Internal.API.GetUpdates
+    Web.Telegram.Types.Internal.API.KickChatMember
+    Web.Telegram.Types.Internal.API.LeaveChat
+    Web.Telegram.Types.Internal.API.PinChatMessage
+    Web.Telegram.Types.Internal.API.PromoteChatMember
+    Web.Telegram.Types.Internal.API.RestrictChatMember
+    Web.Telegram.Types.Internal.API.SendAnimation
+    Web.Telegram.Types.Internal.API.SendAudio
+    Web.Telegram.Types.Internal.API.SendChatAction
+    Web.Telegram.Types.Internal.API.SendContact
+    Web.Telegram.Types.Internal.API.SendDice
+    Web.Telegram.Types.Internal.API.SendDocument
+    Web.Telegram.Types.Internal.API.SendGame
+    Web.Telegram.Types.Internal.API.SendInvoice
+    Web.Telegram.Types.Internal.API.SendLocation
+    Web.Telegram.Types.Internal.API.SendMessage
+    Web.Telegram.Types.Internal.API.SendPhoto
+    Web.Telegram.Types.Internal.API.SendPoll
+    Web.Telegram.Types.Internal.API.SendSticker
+    Web.Telegram.Types.Internal.API.SendVenue
+    Web.Telegram.Types.Internal.API.SendVideo
+    Web.Telegram.Types.Internal.API.SendVoice
+    Web.Telegram.Types.Internal.API.SendVoiceNote
+    Web.Telegram.Types.Internal.API.SetChatAdministratorCustomTitle
+    Web.Telegram.Types.Internal.API.SetChatDescription
+    Web.Telegram.Types.Internal.API.SetChatPermissions
+    Web.Telegram.Types.Internal.API.SetChatPhoto
+    Web.Telegram.Types.Internal.API.SetChatStickerSet
+    Web.Telegram.Types.Internal.API.SetChatTitle
+    Web.Telegram.Types.Internal.API.SetGameScore
+    Web.Telegram.Types.Internal.API.SetMyCommands
+    Web.Telegram.Types.Internal.API.SetPassportDataErrors
+    Web.Telegram.Types.Internal.API.SetStickerPositionInSet
+    Web.Telegram.Types.Internal.API.SetStickerSetThumb
+    Web.Telegram.Types.Internal.API.SetWebhook
+    Web.Telegram.Types.Internal.API.StopMessageLiveLocation
+    Web.Telegram.Types.Internal.API.StopPoll
+    Web.Telegram.Types.Internal.API.UnbanChatMember
+    Web.Telegram.Types.Internal.API.UnpinAllChatMessages
+    Web.Telegram.Types.Internal.API.UnpinChatMessage
+    Web.Telegram.Types.Internal.API.UploadStickerFile
+    Web.Telegram.Types.Internal.Audio
+    Web.Telegram.Types.Internal.BotCommand
+    Web.Telegram.Types.Internal.CallbackQuery
+    Web.Telegram.Types.Internal.Chat
+    Web.Telegram.Types.Internal.ChatLocation
+    Web.Telegram.Types.Internal.ChatMember
+    Web.Telegram.Types.Internal.ChatPermissions
+    Web.Telegram.Types.Internal.ChatPhoto
+    Web.Telegram.Types.Internal.ChosenInlineResult
+    Web.Telegram.Types.Internal.Contact
+    Web.Telegram.Types.Internal.Dice
+    Web.Telegram.Types.Internal.Document
+    Web.Telegram.Types.Internal.EncryptedCredentials
+    Web.Telegram.Types.Internal.EncryptedPassportElement
+    Web.Telegram.Types.Internal.File
+    Web.Telegram.Types.Internal.ForceReply
+    Web.Telegram.Types.Internal.Game
+    Web.Telegram.Types.Internal.GameHighScore
+    Web.Telegram.Types.Internal.InlineKeyboardButton
+    Web.Telegram.Types.Internal.InlineKeyboardMarkup
     Web.Telegram.Types.Internal.InlineQuery
+    Web.Telegram.Types.Internal.InlineQueryResult
+    Web.Telegram.Types.Internal.InputFile
     Web.Telegram.Types.Internal.InputMedia
-    Web.Telegram.Types.Internal.Keyboard
-    Web.Telegram.Types.Internal.Media
+    Web.Telegram.Types.Internal.InputMessageContent
+    Web.Telegram.Types.Internal.Invoice
+    Web.Telegram.Types.Internal.KeyboardButton
+    Web.Telegram.Types.Internal.KeyboardButtonPollType
+    Web.Telegram.Types.Internal.LabeledPrice
+    Web.Telegram.Types.Internal.Location
+    Web.Telegram.Types.Internal.LoginUrl
+    Web.Telegram.Types.Internal.MaskPosition
+    Web.Telegram.Types.Internal.Message
     Web.Telegram.Types.Internal.MessageEntity
-    Web.Telegram.Types.Internal.Passport
-    Web.Telegram.Types.Internal.Payment
+    Web.Telegram.Types.Internal.MessageId
+    Web.Telegram.Types.Internal.OrderInfo
+    Web.Telegram.Types.Internal.PassportData
+    Web.Telegram.Types.Internal.PassportElementError
+    Web.Telegram.Types.Internal.PassportFile
+    Web.Telegram.Types.Internal.PhotoSize
     Web.Telegram.Types.Internal.Poll
+    Web.Telegram.Types.Internal.PollAnswer
+    Web.Telegram.Types.Internal.PollOption
+    Web.Telegram.Types.Internal.PreCheckoutQuery
+    Web.Telegram.Types.Internal.ProximityAlertTriggered
+    Web.Telegram.Types.Internal.ReplyKeyboardMarkup
+    Web.Telegram.Types.Internal.ReplyKeyboardRemove
+    Web.Telegram.Types.Internal.ReplyMarkup
+    Web.Telegram.Types.Internal.ResponseParameters
+    Web.Telegram.Types.Internal.ShippingAddress
+    Web.Telegram.Types.Internal.ShippingOption
+    Web.Telegram.Types.Internal.ShippingQuery
     Web.Telegram.Types.Internal.Sticker
+    Web.Telegram.Types.Internal.StickerSet
+    Web.Telegram.Types.Internal.SuccessfulPayment
     Web.Telegram.Types.Internal.Update
     Web.Telegram.Types.Internal.User
+    Web.Telegram.Types.Internal.UserProfilePhotos
+    Web.Telegram.Types.Internal.Venue
+    Web.Telegram.Types.Internal.Video
+    Web.Telegram.Types.Internal.VideoNote
+    Web.Telegram.Types.Internal.Voice
+    Web.Telegram.Types.Internal.WebhookInfo
 
-  other-modules:   Common
   hs-source-dirs:  src
 
 test-suite telegram-types-test
