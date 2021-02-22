@@ -44,22 +44,6 @@ deriving via Flatten Update instance FromJSON Update
 
 deriving via Flatten Update instance ToJSON Update
 
-data UpdateType
-  = Message
-  | EditedMessage
-  | ChannelPost
-  | EditedChannelPost
-  | InlineQuery
-  | ChosenInlineResult
-  | CallbackQuery
-  | ShippingQuery
-  | PreCheckoutQuery
-  | PollUpdate
-  | PollAnswer
-  deriving stock (Show, Eq, Enum, Ord)
-
 mkLabel ''Update
 makePrismLabels ''UpdateContent
-makePrismLabels ''UpdateType
-deriveJSON sumSnake ''UpdateType
 deriveJSON (prefixedSumSnake "Update") ''UpdateContent

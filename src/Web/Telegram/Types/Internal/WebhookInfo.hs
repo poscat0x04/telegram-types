@@ -2,7 +2,7 @@ module Web.Telegram.Types.Internal.WebhookInfo where
 
 import Common
 import Data.Time.Clock.POSIX
-import Web.Telegram.Types.Internal.Update
+import Web.Telegram.Types.Internal.UpdateType
 
 -- | Contains information about the current status of a webhook.
 data WebhookInfo = WebhookInfo

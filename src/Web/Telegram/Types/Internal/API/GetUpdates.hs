@@ -1,7 +1,7 @@
 module Web.Telegram.Types.Internal.API.GetUpdates where
 
 import Common
-import Web.Telegram.Types.Internal.Update
+import Web.Telegram.Types.Internal.UpdateType
 
 data GetUpdates = GetUpdates
   { offset :: Maybe Int,
