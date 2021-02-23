@@ -79,8 +79,26 @@ library
   import:          common-attrs
   build-depends:
   exposed-modules:
+    Web.Telegram.Types
+    Web.Telegram.Types.API
+    Web.Telegram.Types.API.ChatActions
+    Web.Telegram.Types.API.ChatId
+    Web.Telegram.Types.API.Commands
+    Web.Telegram.Types.API.Games
+    Web.Telegram.Types.API.Inline
+    Web.Telegram.Types.API.Messages
+    Web.Telegram.Types.API.Passports
+    Web.Telegram.Types.API.Payments
+    Web.Telegram.Types.API.Queries
+    Web.Telegram.Types.API.Stickers
+    Web.Telegram.Types.API.Updates
+    Web.Telegram.Types.Game
+    Web.Telegram.Types.Inline
+    Web.Telegram.Types.Input
+    Web.Telegram.Types.Interaction
+    Web.Telegram.Types.Passport
+    Web.Telegram.Types.Payment
 
-  -- cabal-fmt: expand src
   other-modules:
     Common
     Utils
@@ -109,9 +127,11 @@ library
     Web.Telegram.Types.Internal.API.GetChatAdministrators
     Web.Telegram.Types.Internal.API.GetChatMember
     Web.Telegram.Types.Internal.API.GetChatMembersCount
+    Web.Telegram.Types.Internal.API.GetFile
     Web.Telegram.Types.Internal.API.GetGameHighScores
     Web.Telegram.Types.Internal.API.GetStickerSet
     Web.Telegram.Types.Internal.API.GetUpdates
+    Web.Telegram.Types.Internal.API.GetUserProfilePhotos
     Web.Telegram.Types.Internal.API.KickChatMember
     Web.Telegram.Types.Internal.API.LeaveChat
     Web.Telegram.Types.Internal.API.PinChatMessage
@@ -126,6 +146,7 @@ library
     Web.Telegram.Types.Internal.API.SendGame
     Web.Telegram.Types.Internal.API.SendInvoice
     Web.Telegram.Types.Internal.API.SendLocation
+    Web.Telegram.Types.Internal.API.SendMediaGroup
     Web.Telegram.Types.Internal.API.SendMessage
     Web.Telegram.Types.Internal.API.SendPhoto
     Web.Telegram.Types.Internal.API.SendPoll
@@ -208,6 +229,7 @@ library
     Web.Telegram.Types.Internal.StickerSet
     Web.Telegram.Types.Internal.SuccessfulPayment
     Web.Telegram.Types.Internal.Update
+    Web.Telegram.Types.Internal.UpdateType
     Web.Telegram.Types.Internal.User
     Web.Telegram.Types.Internal.UserProfilePhotos
     Web.Telegram.Types.Internal.Venue
