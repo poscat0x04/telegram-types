@@ -21,3 +21,4 @@ data CopyMessage = CopyMessage
 
 mkLabel ''CopyMessage
 deriveToJSON snake ''CopyMessage
+makeMethod ''CopyMessage

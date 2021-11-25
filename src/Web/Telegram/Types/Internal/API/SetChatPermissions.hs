@@ -12,3 +12,4 @@ data SetChatPermissions = SetChatPermissions
 
 mkLabel ''SetChatPermissions
 deriveToJSON snake ''SetChatPermissions
+makeMethod ''SetChatPermissions

@@ -11,3 +11,4 @@ data UnpinChatMessage = UnpinChatMessage
 
 mkLabel ''UnpinChatMessage
 deriveToJSON snake ''UnpinChatMessage
+makeMethod ''UnpinChatMessage

@@ -13,3 +13,4 @@ data ForwardMessage = ForwardMessage
 
 mkLabel ''ForwardMessage
 deriveToJSON snake ''ForwardMessage
+makeMethod ''ForwardMessage

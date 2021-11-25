@@ -17,3 +17,4 @@ data SetWebhook = SetWebhook
     via SnakeParts SetWebhook
 
 mkLabel ''SetWebhook
+makeMethod ''SetWebhook

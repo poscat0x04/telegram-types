@@ -7,3 +7,4 @@ newtype GetStickerSet = GetStickerSet {name :: Text}
 
 mkLabel ''GetStickerSet
 deriveToJSON snake ''GetStickerSet
+makeMethod ''GetStickerSet

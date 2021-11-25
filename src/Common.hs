@@ -1,4 +1,6 @@
+{-# LANGUAGE MagicHash #-}
 {-# LANGUAGE PolyKinds #-}
+{-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE UndecidableInstances #-}
 
 module Common
@@ -18,12 +20,15 @@ module Common
     CollectParts (..),
     SnakeParts (..),
     ToReqBody (..),
+    Method (..),
+    makeMethod,
   )
 where
 
 import Data.Aeson as X
 import Data.Aeson.TH as X
 import Data.Aeson.Types
+import qualified Data.Char as C
 import Data.Foldable
 import Data.List (stripPrefix)
 import Data.Maybe (fromMaybe)
@@ -32,8 +37,10 @@ import Data.String (IsString)
 import Data.Text (Text, pack, unpack)
 import qualified Data.Text as T
 import Data.Time.Clock.POSIX
+import GHC.Exts (Proxy#)
 import GHC.Generics
 import GHC.Generics as X (Generic)
+import Language.Haskell.TH
 import Network.HTTP.Client hiding (Proxy)
 import Network.HTTP.Client.MultipartFormData
 import Optics.Core ((&), (.~))
@@ -197,6 +204,7 @@ instance {-# OVERLAPPABLE #-} (GFlattenJSON a) => GFlattenJSON (M1 t m a) where
   gToJSON opts (M1 a) = gToJSON opts a
   gFromJSON opts v = M1 <$> gFromJSON opts v
 
+mkLabel :: Name -> DecsQ
 mkLabel = makeFieldLabelsWith (noPrefixFieldLabels & lensField .~ mappingNamer (pure . tryStrip "_"))
 
 --------------------------------------------------
@@ -286,3 +294,20 @@ instance {-# INCOHERENT #-} (ToReqBody a, CollectParts a, Selector m) => GToPart
 
 instance {-# OVERLAPPABLE #-} GToParts a => GToParts (M1 t m a) where
   gToParts mod (M1 a) = gToParts mod a
+
+--------------------------------------------------
+--
+
+class Method a where
+  methodName :: Proxy# a -> String
+
+makeMethod :: Name -> Q [Dec]
+makeMethod name =
+  let s = case nameBase name of
+        (x : xs) -> C.toLower x : xs
+        _ -> []
+   in [d|
+        instance Method $(pure (ConT name)) where
+          methodName _ = $([|s|])
+          {-# INLINE methodName #-}
+        |]

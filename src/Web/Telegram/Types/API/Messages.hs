@@ -18,6 +18,7 @@ module Web.Telegram.Types.API.Messages
     SendContact (..),
     SendPoll (..),
     SendDice (..),
+    Action (..),
     SendChatAction (..),
     SendInvoice (..),
     SendSticker (..),

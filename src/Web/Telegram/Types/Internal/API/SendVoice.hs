@@ -22,3 +22,4 @@ data SendVoice = SendVoice
     via SnakeParts SendVoice
 
 mkLabel ''SendVoice
+makeMethod ''SendVoice

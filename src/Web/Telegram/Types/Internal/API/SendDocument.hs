@@ -21,3 +21,4 @@ data SendDocument = SendDocument
     via SnakeParts SendDocument
 
 mkLabel ''SendDocument
+makeMethod ''SendDocument

@@ -26,3 +26,4 @@ makePrismLabels ''Action
 mkLabel ''SendChatAction
 deriveToJSON sumSnake ''Action
 deriveToJSON snake ''SendChatAction
+makeMethod ''SendChatAction

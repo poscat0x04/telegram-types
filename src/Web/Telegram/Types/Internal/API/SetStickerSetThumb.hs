@@ -14,3 +14,4 @@ data SetStickerSetThumb = SetStickerSetThumb
     via SnakeParts SetStickerSetThumb
 
 mkLabel ''SetStickerSetThumb
+makeMethod ''SetStickerSetThumb

@@ -16,3 +16,4 @@ data SendDice = SendDice
 
 mkLabel ''SendDice
 deriveToJSON snake ''SendDice
+makeMethod ''SendDice

@@ -15,3 +15,4 @@ data SetGameScore = SetGameScore
 
 mkLabel ''SetGameScore
 deriveToJSON snake ''SetGameScore
+makeMethod ''SetGameScore

@@ -8,3 +8,5 @@ newtype GetFile = GetFile
 
 mkLabel ''GetFile
 deriveToJSON snake ''GetFile
+
+makeMethod ''GetFile

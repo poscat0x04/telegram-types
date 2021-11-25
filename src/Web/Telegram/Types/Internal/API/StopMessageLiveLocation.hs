@@ -14,3 +14,4 @@ data StopMessageLiveLocation = StopMessageLiveLocation
 
 mkLabel ''StopMessageLiveLocation
 deriveToJSON snake ''StopMessageLiveLocation
+makeMethod ''StopMessageLiveLocation

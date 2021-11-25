@@ -13,3 +13,4 @@ data GetUpdates = GetUpdates
 
 mkLabel ''GetUpdates
 deriveJSON snake ''GetUpdates
+makeMethod ''GetUpdates

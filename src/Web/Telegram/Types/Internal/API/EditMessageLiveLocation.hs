@@ -16,3 +16,4 @@ data EditMessageLiveLocation = EditMessageLiveLocation
 
 mkLabel ''EditMessageLiveLocation
 deriveToJSON snake ''EditMessageLiveLocation
+makeMethod ''EditMessageLiveLocation

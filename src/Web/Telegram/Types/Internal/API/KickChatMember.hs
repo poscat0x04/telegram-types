@@ -13,3 +13,4 @@ data KickChatMember = KickChatMember
 
 mkLabel ''KickChatMember
 deriveToJSON snake ''KickChatMember
+makeMethod ''KickChatMember

@@ -9,3 +9,4 @@ newtype GetChatAdministrators = GetChatAdministrators
 
 mkLabel ''GetChatAdministrators
 deriveToJSON snake ''GetChatAdministrators
+makeMethod ''GetChatAdministrators

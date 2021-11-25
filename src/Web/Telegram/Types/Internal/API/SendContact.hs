@@ -18,3 +18,4 @@ data SendContact = SendContact
 
 mkLabel ''SendContact
 deriveToJSON snake ''SendContact
+makeMethod ''SendContact

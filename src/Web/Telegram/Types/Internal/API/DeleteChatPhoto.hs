@@ -9,3 +9,4 @@ newtype DeleteChatPhoto = DeleteChatPhoto
 
 mkLabel ''DeleteChatPhoto
 deriveToJSON snake ''DeleteChatPhoto
+makeMethod ''DeleteChatPhoto

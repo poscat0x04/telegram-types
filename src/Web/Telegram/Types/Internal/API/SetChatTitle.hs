@@ -11,3 +11,4 @@ data SetChatTitle = SetChatTitle
 
 mkLabel ''SetChatTitle
 deriveToJSON snake ''SetChatTitle
+makeMethod ''SetChatTitle

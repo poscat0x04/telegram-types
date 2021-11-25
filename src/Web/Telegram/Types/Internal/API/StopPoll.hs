@@ -13,3 +13,4 @@ data StopPoll = StopPoll
 
 mkLabel ''StopPoll
 deriveToJSON snake ''StopPoll
+makeMethod ''StopPoll

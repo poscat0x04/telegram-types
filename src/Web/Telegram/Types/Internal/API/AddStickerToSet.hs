@@ -18,3 +18,4 @@ data AddStickerToSet = AddStickerToSet
     via SnakeParts AddStickerToSet
 
 mkLabel ''AddStickerToSet
+makeMethod ''AddStickerToSet

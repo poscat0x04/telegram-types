@@ -9,3 +9,4 @@ newtype DeleteChatStickerSet = DeleteChatStickerSet
 
 mkLabel ''DeleteChatStickerSet
 deriveToJSON snake ''DeleteChatStickerSet
+makeMethod ''DeleteChatStickerSet

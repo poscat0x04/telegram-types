@@ -19,3 +19,4 @@ data PromoteChatMember = PromoteChatMember
 
 mkLabel ''PromoteChatMember
 deriveToJSON snake ''PromoteChatMember
+makeMethod ''PromoteChatMember

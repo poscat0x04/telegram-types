@@ -15,3 +15,4 @@ data SendGame = SendGame
 
 mkLabel ''SendGame
 deriveToJSON snake ''SendGame
+makeMethod ''SendGame

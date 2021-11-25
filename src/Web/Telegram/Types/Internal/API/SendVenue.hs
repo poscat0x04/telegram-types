@@ -20,3 +20,4 @@ data SendVenue = SendVenue
 
 mkLabel ''SendVenue
 deriveToJSON snake ''SendVenue
+makeMethod ''SendVenue

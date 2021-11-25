@@ -14,3 +14,4 @@ data EditMessageReplyMarkup = EditMessageReplyMarkup
 
 mkLabel ''EditMessageReplyMarkup
 deriveToJSON snake ''EditMessageReplyMarkup
+makeMethod ''EditMessageReplyMarkup

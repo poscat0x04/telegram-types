@@ -17,3 +17,4 @@ data EditMessageCaption = EditMessageCaption
 
 mkLabel ''EditMessageCaption
 deriveToJSON snake ''EditMessageCaption
+makeMethod ''EditMessageCaption

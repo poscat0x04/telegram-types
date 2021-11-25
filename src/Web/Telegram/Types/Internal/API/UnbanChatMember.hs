@@ -11,3 +11,4 @@ data UnbanChatMember = UnbanChatMember
 
 mkLabel ''UnbanChatMember
 deriveToJSON snake ''UnbanChatMember
+makeMethod ''UnbanChatMember

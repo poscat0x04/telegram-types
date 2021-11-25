@@ -22,3 +22,4 @@ data SendPhoto = SendPhoto
     via SnakeParts SendPhoto
 
 mkLabel ''SendPhoto
+makeMethod ''SendPhoto

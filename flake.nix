@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+  inputs.nixpkgs.url = github:poscat0x04/nixpkgs/dev;
   inputs.flake-utils.url = github:poscat0x04/flake-utils;
 
   outputs = { self, nixpkgs, flake-utils, ... }: with flake-utils;

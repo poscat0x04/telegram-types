@@ -24,3 +24,4 @@ data SendAudio = SendAudio
     via SnakeParts SendAudio
 
 mkLabel ''SendAudio
+makeMethod ''SendAudio

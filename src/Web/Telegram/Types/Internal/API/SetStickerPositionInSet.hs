@@ -10,3 +10,4 @@ data SetStickerPositionInSet = SetStickerPositionInSet
 
 mkLabel ''SetStickerPositionInSet
 deriveToJSON snake ''SetStickerPositionInSet
+makeMethod ''SetStickerPositionInSet

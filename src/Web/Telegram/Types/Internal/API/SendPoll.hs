@@ -22,3 +22,4 @@ data SendPoll = SendPoll
 
 mkLabel ''SendPoll
 deriveToJSON snake ''SendPoll
+makeMethod ''SendPoll

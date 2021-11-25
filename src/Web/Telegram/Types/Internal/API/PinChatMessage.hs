@@ -12,3 +12,4 @@ data PinChatMessage = PinChatMessage
 
 mkLabel ''PinChatMessage
 deriveToJSON snake ''PinChatMessage
+makeMethod ''PinChatMessage

@@ -13,3 +13,4 @@ data AnswerShippingQuery = AnswerShippingQuery
 
 mkLabel ''AnswerShippingQuery
 deriveToJSON snake ''AnswerShippingQuery
+makeMethod ''AnswerShippingQuery

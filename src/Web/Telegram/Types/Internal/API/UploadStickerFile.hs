@@ -13,3 +13,4 @@ data UploadStickerFile = UploadStickerFile
     via SnakeParts UploadStickerFile
 
 mkLabel ''UploadStickerFile
+makeMethod ''UploadStickerFile

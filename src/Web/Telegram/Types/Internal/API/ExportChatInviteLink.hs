@@ -9,3 +9,4 @@ newtype ExportChatInviteLink = ExportChatInviteLink
 
 mkLabel ''ExportChatInviteLink
 deriveToJSON snake ''ExportChatInviteLink
+makeMethod ''ExportChatInviteLink

@@ -7,5 +7,5 @@ newtype DeleteStickerFromSet = DeleteStickerFromSet
   deriving stock (Show, Eq)
 
 mkLabel ''DeleteStickerFromSet
-
 deriveToJSON snake ''DeleteStickerFromSet
+makeMethod ''DeleteStickerFromSet

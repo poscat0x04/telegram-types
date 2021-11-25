@@ -11,3 +11,4 @@ data SetChatStickerSet = SetChatStickerSet
 
 mkLabel ''SetChatStickerSet
 deriveToJSON snake ''SetChatStickerSet
+makeMethod ''SetChatStickerSet

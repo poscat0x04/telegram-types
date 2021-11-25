@@ -3,9 +3,12 @@ module Web.Telegram.Types.Internal.API.GetChatMember where
 import Common
 import Web.Telegram.Types.Internal.API.ChatId
 
-newtype GetChatMembersCount = GetChatMembersCount
-  {chatId :: ChatId}
+data GetChatMember = GetChatMember
+  { chatId :: ChatId,
+    userId :: Int
+  }
   deriving stock (Show, Eq)
 
-mkLabel ''GetChatMembersCount
-deriveToJSON snake ''GetChatMembersCount
+mkLabel ''GetChatMember
+deriveToJSON snake ''GetChatMember
+makeMethod ''GetChatMember

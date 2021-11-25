@@ -9,3 +9,4 @@ newtype LeaveChat = LeaveChat
 
 mkLabel ''LeaveChat
 deriveToJSON snake ''LeaveChat
+makeMethod ''LeaveChat

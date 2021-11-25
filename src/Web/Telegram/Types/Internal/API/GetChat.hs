@@ -9,3 +9,4 @@ newtype GetChat = GetChat
 
 mkLabel ''GetChat
 deriveToJSON snake ''GetChat
+makeMethod ''GetChat

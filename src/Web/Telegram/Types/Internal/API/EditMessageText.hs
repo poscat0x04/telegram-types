@@ -18,3 +18,4 @@ data EditMessageText = EditMessageText
 
 mkLabel ''EditMessageText
 deriveToJSON snake ''EditMessageText
+makeMethod ''EditMessageText

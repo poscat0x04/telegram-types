@@ -8,6 +8,6 @@ package telegram-types
   documentation: True
   haddock-html: True
   haddock-hoogle: True
-  haddock-internal: True
+  haddock-internal: False
   test-show-details: streaming
 

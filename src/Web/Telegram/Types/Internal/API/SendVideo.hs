@@ -25,3 +25,4 @@ data SendVideo = SendVideo
     via SnakeParts SendVideo
 
 mkLabel ''SendVideo
+makeMethod ''SendVideo

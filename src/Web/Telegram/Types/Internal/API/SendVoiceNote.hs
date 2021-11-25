@@ -19,3 +19,4 @@ data SendVoiceNote = SendVoiceNote
 
 mkLabel ''SendVoiceNote
 deriveToJSON snake ''SendVoiceNote
+makeMethod ''SendVoiceNote

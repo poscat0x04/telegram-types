@@ -20,3 +20,4 @@ data CreateNewStickerSet = CreateNewStickerSet
     via SnakeParts CreateNewStickerSet
 
 mkLabel ''CreateNewStickerSet
+makeMethod ''CreateNewStickerSet

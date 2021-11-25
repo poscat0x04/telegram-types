@@ -11,3 +11,4 @@ data AnswerPreCheckoutQuery = AnswerPreCheckoutQuery
 
 mkLabel ''AnswerPreCheckoutQuery
 deriveToJSON snake ''AnswerPreCheckoutQuery
+makeMethod ''AnswerPreCheckoutQuery

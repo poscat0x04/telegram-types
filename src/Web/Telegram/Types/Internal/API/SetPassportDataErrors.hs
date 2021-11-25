@@ -11,3 +11,4 @@ data SetPassportDataErrors = SetPassportDataErrors
 
 mkLabel ''SetPassportDataErrors
 deriveToJSON snake ''SetPassportDataErrors
+makeMethod ''SetPassportDataErrors

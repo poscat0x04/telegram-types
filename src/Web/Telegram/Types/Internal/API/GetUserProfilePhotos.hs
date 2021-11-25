@@ -11,3 +11,4 @@ data GetUserProfilePhotos = GetUserProfilePhotos
 
 mkLabel ''GetUserProfilePhotos
 deriveToJSON snake ''GetUserProfilePhotos
+makeMethod ''GetUserProfilePhotos

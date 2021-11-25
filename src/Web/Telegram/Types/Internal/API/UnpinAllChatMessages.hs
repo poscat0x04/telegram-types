@@ -9,3 +9,4 @@ newtype UnpinAllChatMessages = UnpinAllChatMessages
 
 mkLabel ''UnpinAllChatMessages
 deriveToJSON snake ''UnpinAllChatMessages
+makeMethod ''UnpinAllChatMessages

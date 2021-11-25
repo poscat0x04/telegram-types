@@ -21,3 +21,4 @@ data SendMessage = SendMessage
 
 mkLabel ''SendMessage
 deriveToJSON snake ''SendMessage
+makeMethod ''SendMessage

@@ -34,3 +34,4 @@ data SendInvoice = SendInvoice
 
 mkLabel ''SendInvoice
 deriveToJSON snake ''SendInvoice
+makeMethod ''SendInvoice

@@ -16,3 +16,4 @@ data SendSticker = SendSticker
 
 mkLabel ''SendSticker
 deriveToJSON snake ''SendSticker
+makeMethod ''SendSticker

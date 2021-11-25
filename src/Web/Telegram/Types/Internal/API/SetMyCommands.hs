@@ -9,3 +9,4 @@ newtype SetMyCommands = SetMyCommands
 
 mkLabel ''SetMyCommands
 deriveToJSON snake ''SetMyCommands
+makeMethod ''SetMyCommands

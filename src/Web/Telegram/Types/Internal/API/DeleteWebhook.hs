@@ -8,3 +8,4 @@ newtype DeleteWebhook = DeleteWebhook
 
 mkLabel ''DeleteWebhook
 deriveJSON snake ''DeleteWebhook
+makeMethod ''DeleteWebhook

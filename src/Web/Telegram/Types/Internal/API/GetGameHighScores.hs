@@ -12,3 +12,4 @@ data GetGameHighScores = GetGameHighScores
 
 mkLabel ''GetGameHighScores
 deriveToJSON snake ''GetGameHighScores
+makeMethod ''GetGameHighScores

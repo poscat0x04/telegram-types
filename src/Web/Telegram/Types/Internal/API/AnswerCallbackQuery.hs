@@ -13,3 +13,4 @@ data AnswerCallbackQuery = AnswerCallbackQuery
 
 mkLabel ''AnswerCallbackQuery
 deriveToJSON snake ''AnswerCallbackQuery
+makeMethod ''AnswerCallbackQuery

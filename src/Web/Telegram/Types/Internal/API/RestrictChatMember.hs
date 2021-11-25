@@ -15,3 +15,4 @@ data RestrictChatMember = RestrictChatMember
 
 mkLabel ''RestrictChatMember
 deriveToJSON snake ''RestrictChatMember
+makeMethod ''RestrictChatMember

@@ -24,3 +24,4 @@ data SendAnimation = SendAnimation
     via SnakeParts SendAnimation
 
 mkLabel ''SendAnimation
+makeMethod ''SendAnimation

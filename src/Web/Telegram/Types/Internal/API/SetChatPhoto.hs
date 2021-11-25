@@ -14,3 +14,4 @@ data SetChatPhoto = SetChatPhoto
     via SnakeParts SetChatPhoto
 
 mkLabel ''SetChatPhoto
+makeMethod ''SetChatPhoto

@@ -12,3 +12,4 @@ data SetChatAdministratorCustomTitle = SetChatAdministratorCustomTitle
 
 mkLabel ''SetChatAdministratorCustomTitle
 deriveToJSON snake ''SetChatAdministratorCustomTitle
+makeMethod ''SetChatAdministratorCustomTitle

@@ -16,3 +16,4 @@ data EditMessageMedia = EditMessageMedia
     via SnakeParts EditMessageMedia
 
 mkLabel ''EditMessageMedia
+makeMethod ''EditMessageMedia

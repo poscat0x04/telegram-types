@@ -11,3 +11,4 @@ data DeleteMessage = DeleteMessage
 
 mkLabel ''DeleteMessage
 deriveToJSON snake ''DeleteMessage
+makeMethod ''DeleteMessage

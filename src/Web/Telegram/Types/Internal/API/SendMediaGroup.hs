@@ -15,3 +15,4 @@ data SendMediaGroup = SendMediaGroup
 
 mkLabel ''SendMediaGroup
 deriveToJSON snake ''SendMediaGroup
+makeMethod ''SendMediaGroup

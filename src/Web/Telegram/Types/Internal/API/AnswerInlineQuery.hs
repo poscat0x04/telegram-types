@@ -15,4 +15,5 @@ data AnswerInlineQuery = AnswerInlineQuery
   deriving stock (Show, Eq)
 
 mkLabel ''AnswerInlineQuery
+makeMethod ''AnswerInlineQuery
 deriveToJSON snake ''AnswerInlineQuery
